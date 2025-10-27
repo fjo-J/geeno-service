@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper.js (スライダー用) -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <title>Geeno - 事業開発支援パートナー</title>
+    
+    <style>
+        /* メインフォントをInterに設定 */
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            /* ダークテーマの基本テキスト色 */
+            color: #a8b2d1; /* slate-400 */
+        }
+        
+        /* h1, h2 などの見出しは可読性を上げるため、少し明るい色に */
+        h1, h2, h3, h4 {
+            color: #e2e8f0; /* slate-200 */
+        }
+
+        /* スムーススクロール */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* AIチックなダークネイビーの背景 */
+        .bg-primary {
+            background-color: #0a192f;
+        }
+        
+        /* カードやセクションの背景色（少し明るいネイビー） */
+        .bg-card {
+            background-color: #112240;
+        }
+
+        /* 先進的なアクセントカラー（エレクトリックミント） */
+        .text-accent {
+            color: #64ffda;
+        }
+        .bg-accent {
+            background-color: #64ffda;
+        }
+        .border-accent {
+            border-color: #64ffda;
+        }
+        .ring-accent {
+            --tw-ring-color: #64ffda;
+        }
+
+        /* テキストのサブカラー（少し薄い） */
+        .text-light {
+            color: #a8b2d1; /* slate-400 */
+        }
+        
+        /* テキストのメインカラー（明るい） */
+        .text-bright {
+            color: #e2e8f0; /* slate-200 */
+        }
+
+        /* ホバー時のシャドウと浮き上がり効果 */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(100, 255, 218, 0.3);
+        }
+
+        /* Swiperスライダーのボタン色 */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #64ffda; /* text-accent */
+        }
+        .swiper-pagination-bullet-active {
+            background: #64ffda; /* bg-accent */
+        }
+        /* タブのアクティブ色 */
+        .tab-active {
+            border-bottom-color: #64ffda;
+            color: #64ffda;
+        }
+    </style>
+</head>
+<body class="bg-primary text-light">
+
+    <!-- ヘッダー -->
+    <header id="header" class="bg-primary/90 sticky top-0 z-50 shadow-lg backdrop-blur-md">
+        <!-- ... existing header code ... -->
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- SVG Logo for Geeno (AIチックなデザインに変更) -->
+            <a href="#" class="flex items-center space-x-2" aria-label="Geeno ホーム">
+                <svg width="110" height="32" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="24" font-family="'Inter', sans-serif" font-size="26" font-weight="700" fill="#e2e8f0">Geeno</text>
+                    <!-- アクセントライン -->
+                    <rect x="0" y="30" width="65" height="2" fill="#64ffda"></rect>
+                    <!-- "o" の部分にサークルを追加 -->
+                    <circle cx="91" cy="18" r="7" stroke="#64ffda" stroke-width="2"/>
+                </svg>
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#strength" class="text-light hover:text-accent transition duration-300">Geenoの強み</a>
+                <a href="#service" class="text-light hover:text-accent transition duration-300">サービス</a>
+                <a href="#case" class="text-light hover:text-accent transition duration-300">プロジェクト実績</a>
+                <a href="#contact" class="bg-accent text-primary px-4 py-2 text-sm font-bold hover:bg-opacity-80 transition duration-300">お問い合わせ</a>
+            </nav>
+            <!-- モバイルメニューボタン -->
+            <button id="mobile-menu-btn" class="md:hidden text-light focus:outline-none" aria-label="メニューを開く">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- モバイルメニュー -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
+            <a href="#strength" class="block text-light hover:text-accent transition duration-300">Geenoの強み</a>
+            <a href="#service" class="block text-light hover:text-accent transition duration-300">サービス</a>
+            <a href="#case" class="block text-light hover:text-accent transition duration-300">プロジェクト実績</a>
+            <a href="#contact" class="block bg-accent text-primary px-4 py-2 font-bold hover:bg-opacity-80 transition duration-300">お問い合わせ</a>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+
+        <!-- ファーストビュー (ヒーローセクション) -->
+        <section class="bg-primary py-24 md:py-40">
+            <!-- ... existing hero code ... -->
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-bright mb-6">
+                    企業の「次の一手」を、<br class="md:hidden">“現場から”実装する。
+                </h1>
+                <p class="text-lg md:text-xl text-light max-w-3xl mx-auto mb-10">
+                    本当に優秀なビジネスデベロップメントは、"現場"にいます。<br>
+                    Geenoは、AI・DXの最先端スキルと経営の視座を武器に、貴社の事業を"現場から"成功に導くパートナーです。
+                </p>
+                <a href="#contact" class="bg-accent text-primary text-lg font-bold px-8 py-4 hover:bg-opacity-80 transition duration-300 shadow-lg shadow-accent/20">
+                    まずは無料でご相談ください
+                </a>
+            </div>
+        </section>
+
+        <!-- 課題提起セクション (2x2 スクエア型・コンパクト化) -->
+        <section class="py-16 md:py-24 bg-primary">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
+                    その課題、<br class="md:hidden">“現場で実行できる”<br class="md:hidden">パートナーが解決します
+                </h2>
+                <!-- 
+                  [修正点]
+                  - lg:grid-cols-4 を削除し、md:grid-cols-2 (2列) に統一
+                  - max-w-4xl と mx-auto を追加し、2x2グリッド全体の幅を制限してカードサイズを小さく
+                -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <!-- 
+                      [修正点]
+                      - p-6 を p-4 に（パディングを縮小）
+                      - w-10 h-10 を w-8 h-8 に（アイコンを縮小）
+                      - mb-4 を mb-3 に（マージンを縮小）
+                      - text-xl を text-lg に（タイトルを縮小）
+                    -->
+                    <!-- 課題 1 (スクエア型・コンパクト化) -->
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                        <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                        </svg>
+                        <h3 class="text-lg font-bold text-bright mb-2">新規事業</h3>
+                        <p class="text-sm text-light">
+                            アイデアはあるが、事業全体を統括し、推進できる"実行者"が社内にいない。
+                        </p>
+                    </div>
+                    <!-- 課題 2 (スクエア型・コンパクト化) -->
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                        <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 21v-1.5M15.75 3v1.5M12 4.5v-1.5m0 18v-1.5M15.75 21v-1.5M19.5 8.25h1.5m-18 0h1.5M19.5 12h1.5m-18 0h1.5m15 3.75h1.5m-18 0h1.5M12 19.5v1.5m0-18v1.5" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.663 15.163a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM15.337 15.163a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM8.663 8.837a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM15.337 8.837a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                        </svg>
+                        <h3 class="text-lg font-bold text-bright mb-2">AI / DX</h3>
+                        <p class="text-sm text-light">
+                            AIやDXを導入したいが、ビジネスにどう"実装"すれば成果が出るのか分からない。
+                        </p>
+                    </div>
+                    <!-- 課題 3 (スクエア型・コンパクト化) -->
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                        <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v16.5h16.5" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 19.5v-15h9v15h-9zM15.75 9l-3 3m0 0l-3-3m3 3V3" />
+                        </svg>
+                        <h3 class="text-lg font-bold text-bright mb-2">営業・マーケ</h3>
+                        <p class="text-sm text-light">
+                            営業プロセスが非効率で、売上が伸び悩んでいる。マーケティングの"仕組み化"が急務だ。
+                        </p>
+                    </div>
+                    <!-- 課題 4 (スクエア型・コンパクト化) -->
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                        <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-4.3-2.722a3 3 0 01-4.682 2.72 9.094 9.094 0 013.741.479m-4.3-2.722a3 3 0 00-4.682-2.72 9.094 9.094 0 003.741.479m10.535 2.242a3 3 0 01-4.682 2.72 9.094 9.094 0 013.741.479m-4.3-2.722a3 3 0 00-4.682-2.72 9.094 9.094 0 003.741.479M12 12a3 3 0 11-6 0 3 3 0 016 0zM12 12a3 3 0 106 0 3 3 0 00-6 0z" />
+                        </svg>
+                        <h3 class="text-lg font-bold text-bright mb-2">組織・実行</h3>
+                        <p class="text-sm text-light">
+                            外部リソースを活用しているが、"統率"が取れず、期待した成果が出ていない。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Geenoが選ばれる理由 (横スライドに変更) -->
+        <section id="strength" class="py-16 md:py-24 bg-card relative">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
+                    Geenoが選ばれる理由
+                </h2>
+                <!-- Swiper -->
+                <div class="swiper-container swiper-strength w-full">
+                    <div class="swiper-wrapper">
+                        <!-- スライド 1 -->
+                        <div class="swiper-slide p-4">
+                            <div class="text-center bg-primary p-8 h-full">
+                                <div class="flex justify-center items-center mb-6">
+                                    <svg class="w-16 h-16 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-bright mb-4">経営の視座と「現場」の実行力</h3>
+                                <p class="text-light">
+                                    取締役COOや事業責任者として培った「事業全体を動かす力」を、コンサルではなく"当事者"として提供。戦略策定から現場での実装まで、成果を出すまで伴走します。
+                                </p>
+                            </div>
+                        </div>
+                        <!-- スライド 2 -->
+                        <div class="swiper-slide p-4">
+                            <div class="text-center bg-primary p-8 h-full">
+                                <div class="flex justify-center items-center mb-6">
+                                    <svg class="w-16 h-16 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l-1.5-1.5m0 0l1.5-1.5m-1.5 1.5h16.5m0 0l-1.5-1.5m1.5 1.5l-1.5 1.5M12 21v-5.625m0 0A8.25 8.25 0 1012 3v5.625m0 0A8.25 8.25 0 1112 21v-5.625" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-bright mb-4">最先端の「実装」スキル</h3>
+                                <p class="text-light">
+                                    AIプロンプトエンジニアリングからDX基盤(HubSpot)、UI/UXデザインまで。机上の空論ではない、事業に直結するテクノロジーを迅速に"実装"します。
+                                </p>
+                            </div>
+                        </div>
+                        <!-- スライド 3 -->
+                        <div class="swiper-slide p-4">
+                            <div class="text-center bg-primary p-8 h-full">
+                                <div class="flex justify-center items-center mb-6">
+                                    <svg class="w-16 h-16 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.056 3 12c0 4.556 4.03 8.25 9 8.25z" />
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                                      <path fill="#64ffda" d="M12 12.75a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-bright mb-4">信頼に基づくパートナーシップ</h3>
+                                <p class="text-light">
+                                    経営者の「壁打ち相手」となり、ゴールを共有。大企業から中小企業まで、あらゆるフェーズの泥臭いプロセスも共に歩む「信頼のおけるパートナー」として伴走します。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ページネーション -->
+                    <div class="swiper-pagination swiper-pagination-strength mt-8"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- サービス内容 (成果の数字を追加) -->
+        <section id="service" class="py-16 md:py-24 bg-primary">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
+                    サービス
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- サービス 1 -->
+                    <div class="bg-card shadow-xl overflow-hidden card-hover flex flex-col">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-bold text-accent mb-4">新規事業開発 (0→1)</h3>
+                            <ul class="list-disc list-inside text-light space-y-2">
+                                <li>市場調査・事業企画・コンセプト設計</li>
+                                <li>AI / SaaS プロダクト開発支援</li>
+                                <li>UI/UXデザイン (Figma)</li>
+                                <li>AIコアロジック開発 (プロンプト)</li>
+                                <li>MVP（実用最小限の製品）構築</li>
+                            </ul>
+                        </div>
+                        <div class="p-8 bg-primary mt-auto">
+                            <h4 class="text-lg font-bold text-bright mb-2">主な成果指標</h4>
+                            <p class="text-accent font-bold text-2xl">2年で売上30倍</p>
+                            <p class="text-light text-sm">（防災SaaS事業 COOとして）</p>
+                            <p class="text-accent font-bold text-2xl mt-2">6ヶ月でMRR 100万</p>
+                            <p class="text-light text-sm">（AI SaaS事業 責任者として）</p>
+                        </div>
+                    </div>
+                    <!-- サービス 2 -->
+                    <div class="bg-card shadow-xl overflow-hidden card-hover flex flex-col">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-bold text-accent mb-4">既存事業グロース (1→10)</h3>
+                            <ul class="list-disc list-inside text-light space-y-2">
+                                <li>営業戦略立案・実行支援</li>
+                                <li>セールスイネーブルメント（営業の仕組み化）</li>
+                                <li>マーケティング戦略・実行支援</li>
+                                <li>DXによる業務プロセス改善</li>
+                                <li>HubSpot導入・運用支援</li>
+                            </ul>
+                        </div>
+                        <div class="p-8 bg-primary mt-auto">
+                            <h4 class="text-lg font-bold text-bright mb-2">主な成果指標</h4>
+                            <p class="text-accent font-bold text-2xl">1年で売上2億円達成</p>
+                            <p class="text-light text-sm">（コンサル事業 DX・組織支援）</p>
+                            <p class="text-accent font-bold text-2xl mt-2">売上 約2.7倍伸長</p>
+                            <p class="text-light text-sm">（製造業DX事業 COOとして）</p>
+                        </div>
+                    </div>
+                    <!-- サービス 3 -->
+                    <div class="bg-card shadow-xl overflow-hidden card-hover flex flex-col">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-bold text-accent mb-4">組織開発・マネジメント</h3>
+                            <ul class="list-disc list-inside text-light space-y-2">
+                                <li>スタートアップの組織構築支援</li>
+                                <li>外部組織の統率・マネジメント</li>
+                                <li>セールスチームの育成</li>
+                                <li>経営・事業責任者の壁打ち</li>
+                                <li>採用・オンボーディング支援</li>
+                            </ul>
+                        </div>
+                        <div class="p-8 bg-primary mt-auto">
+                            <h4 class="text-lg font-bold text-bright mb-2">主な成果指標</h4>
+                            <p class="text-accent font-bold text-2xl">8ヶ月で8名→60名</p>
+                            <p class="text-light text-sm">（CS組織 拠点長として）</p>
+                            <p class="text-accent font-bold text-2xl mt-2">代理店80社以上開拓</p>
+                            <p class="text-light text-sm">（コンサル事業 外部組織統率）</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- プロジェクト実績 (クリック式タブに変更) -->
+        <section id="case" class="py-16 md:py-24 bg-card">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
+                    プロジェクト実績 (ケーススタディ)
+                </h2>
+                
+                <!-- タブヘッダー -->
+                <div class="flex justify-center border-b border-slate-700 mb-8" role="tablist" aria-label="実績カテゴリ">
+                    <button role="tab" aria-selected="true" id="tab-it" aria-controls="panel-it" class="tab-button tab-active text-lg font-bold py-3 px-6 border-b-2 border-transparent hover:text-accent transition-colors">IT / AI</button>
+                    <button role="tab" aria-selected="false" id="tab-consulting" aria-controls="panel-consulting" class="tab-button text-lg font-bold py-3 px-6 border-b-2 border-transparent text-light hover:text-accent transition-colors">コンサルティング</button>
+                    <button role="tab" aria-selected="false" id="tab-dx" aria-controls="panel-dx" class="tab-button text-lg font-bold py-3 px-6 border-b-2 border-transparent text-light hover:text-accent transition-colors">製造業 / DX</button>
+                    <button role="tab" aria-selected="false" id="tab-saas" aria-controls="panel-saas" class="tab-button text-lg font-bold py-3 px-6 border-b-2 border-transparent text-light hover:text-accent transition-colors">不動産 / SaaS</button>
+                </div>
+
+                <!-- タブパネル -->
+                <div class="space-y-8">
+                    <!-- 実績 1 (IT / AI) -->
+                    <div role="tabpanel" id="panel-it" aria-labelledby="tab-it" class="tab-panel space-y-8">
+                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                            <h3 class="text-2xl font-bold text-bright mb-2">広告領域 AI SaaS</h3>
+                            <p class="text-sm text-gray-400 mb-4">業界: IT / AI</d>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-slate-300">課題</h4>
+                                    <p class="text-light">新規SaaSの市場投入と早期収益化、プロダクトの継続的改善</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-300">支援内容</h4>
+                                    <p class="text-light">事業責任者として参画。マーケ/セールスからAIコアロジック開発、UI/UXデザインまで事業全領域を統括。</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-accent">主な成果</h4>
+                                    <ul class="list-disc list-inside text-light">
+                                        <li>支援開始6ヶ月でMRR 100万円を達成</li>
+                                        <li>商談化率35%、トライアル率65%を実現</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 実績 2 (コンサルティング) -->
+                    <div role="tabpanel" id="panel-consulting" aria-labelledby="tab-consulting" class="tab-panel hidden space-y-8">
+                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                            <h3 class="text-2xl font-bold text-bright mb-2">DX・組織コンサルティング</h3>
+                            <p class="text-sm text-gray-400 mb-4">業界: コンサルティング / 労務</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-slate-300">課題</h4>
+                                    <p class="text-light">少ないリソースでの多角化と、外部委託メンバーの成果最大化</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-300">支援内容</h4>
+                                    <p class="text-light">DX基盤（Web、HubSpot）の構築、AI活用による営業の仕組み化、外部リソースの組織統率。</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-accent">主な成果</h4>
+                                    <ul class="list-disc list-inside text-light">
+                                        <li>1年間で事業売上2億円を達成</li>
+                                        <li>新規代理店を80社以上開拓</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 実績 3 (製造業 / DX) -->
+                    <div role="tabpanel" id="panel-dx" aria-labelledby="tab-dx" class="tab-panel hidden space-y-8">
+                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                            <h3 class="text-2xl font-bold text-bright mb-2">事業再生 (製造業 DX)</h3>
+                            <p class="text-sm text-gray-400 mb-4">業界: 製造業 / DX</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-slate-300">課題</h4>
+                                    <p class="text-light">キャッシュアウト数ヶ月前の状態からの緊急の事業再生</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-300">支援内容</h4>
+                                    <p class="text-light">取締役COOとして参画。事業モデルの再構築、組織開発、Webマーケティングを主導。</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-accent">主な成果</h4>
+                                    <ul class="list-disc list-inside text-light">
+                                        <li>売上を約2.7倍 (4千万→1.1億) に伸長</li>
+                                        <li>次期黒字化見込みまでのV字回復を達成</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 実績 4 (不動産 / SaaS) -->
+                    <div role="tabpanel" id="panel-saas" aria-labelledby="tab-saas" class="tab-panel hidden space-y-8">
+                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                            <h3 class="text-2xl font-bold text-bright mb-2">事業グロース (防災 SaaS)</h3>
+                            <p class="text-sm text-gray-400 mb-4">業界: 不動産 / SaaS</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-slate-300">課題</h4>
+                                    <p class="text-light">新規事業の急成長（1→10）フェーズにおける全社的な仕組み化</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-300">支援内容</h4>
+                                    <p class="text-light">取締役COOとして参画。企画/マーケ/セールス/CSの各部門をゼロから構築・仕組み化。</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-accent">主な成果</h4>
+                                    <ul class="list-disc list-inside text-light">
+                                        <li>2年間で事業売上を30倍 (数百万→3億) に成長</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせ (Contact) -->
+        <section id="contact" class="py-16 md:py-24 bg-primary">
+            <!-- ... existing contact form code ... -->
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-12">
+                    お問い合わせ
+                </h2>
+                <div class="max-w-3xl mx-auto bg-card p-8 md:p-12 shadow-xl">
+                    <p class="text-center text-light mb-8">
+                        事業の課題、新規プロジェクト、AIの活用など、まずはお気軽にご相談ください。<br>
+                        経営者の壁打ち相手として、共に解決策を探します。
+                    </p>
+                    <form id="contact-form">
+                        <div class="mb-6">
+                            <label for="company" class="block text-slate-300 font-bold mb-2">会社名</label>
+                            <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-primary border border-slate-600 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" placeholder="貴社名">
+                        </div>
+                        <div class="mb-6">
+                            <label for="name" class="block text-slate-300 font-bold mb-2">お名前 <span class="text-accent">*</span></label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-primary border border-slate-600 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" placeholder="担当者様のお名前">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-slate-300 font-bold mb-2">メールアドレス <span class="text-accent">*</span></label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-primary border border-slate-600 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" placeholder="example@company.com">
+                        </div>
+                        <div class="mb-8">
+                            <label for="message" class="block text-slate-300 font-bold mb-2">ご相談内容 <span class="text-accent">*</span></label>
+                            <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 bg-primary border border-slate-600 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" placeholder="（例）新規SaaS事業の立ち上げについて相談したい。"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-accent text-primary px-8 py-4 text-lg font-bold hover:bg-opacity-80 transition duration-300 shadow-lg shadow-accent/20">
+                                送信する
+                            </button>
+                        </div>
+                    </form>
+                    <!-- 送信後のメッセージ表示エリア -->
+                    <div id="form-message" class="mt-6 text-center"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-primary py-12 border-t border-slate-800">
+        <!-- ... existing footer code ... -->
+        <div class="container mx-auto px-6 text-center text-light">
+            <!-- Footer Logo -->
+            <div class="flex justify-center mb-4">
+                <svg width="110" height="32" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="24" font-family="'Inter', sans-serif" font-size="26" font-weight="700" fill="#e2e8f0">Geeno</text>
+                    <rect x="0" y="30" width="65" height="2" fill="#64ffda"></rect>
+                    <circle cx="91" cy="18" r="7" stroke="#64ffda" stroke-width="2"/>
+                </svg>
+            </div>
+            <nav class="flex justify-center flex-wrap space-x-6 mb-6">
+                <a href="#strength" class="hover:text-accent transition duration-300">Geenoの強み</a>
+                <a href="#service" class="hover:text-accent transition duration-300">サービス</a>
+                <a href="#case" class="hover:text-accent transition duration-300">プロジェクト実績</a>
+                <a href="#contact" class="hover:text-accent transition duration-300">お問い合わせ</a>
+            </nav>
+            <p>&copy; 2025 Geeno. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // モバイルメニューのトグル
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // モバイルメニューのリンククリックでメニューを閉じる
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // お問い合わせフォームのダミー処理
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                
+                // ダミーの送信処理
+                formMessage.textContent = '送信中です...';
+                formMessage.className = 'mt-6 text-center text-accent';
+                
+                setTimeout(() => {
+                    formMessage.textContent = 'お問い合わせありがとうございます。内容を確認の上、折り返しご連絡いたします。';
+                    formMessage.className = 'mt-6 text-center text-accent font-bold';
+                    contactForm.reset();
+                }, 1500); // 1.5秒待つ
+            });
+
+            // Swiper (選ばれる理由) の初期化
+            new Swiper('.swiper-strength', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.swiper-pagination-strength',
+                    clickable: true,
+                },
+                breakpoints: {
+                    // 768px以上 (md)
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    },
+                    // 640px以上 (sm)
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    }
+                }
+            });
+
+            // タブ (プロジェクト実績) の切り替えロジック
+            const tabs = document.querySelectorAll('.tab-button');
+            const panels = document.querySelectorAll('.tab-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // すべてのタブとパネルをリセット
+                    tabs.forEach(item => {
+                        item.classList.remove('tab-active');
+                        item.classList.add('text-light');
+                        item.setAttribute('aria-selected', 'false');
+                    });
+                    panels.forEach(panel => {
+                        panel.classList.add('hidden');
+                    });
+
+                    // クリックされたタブをアクティブ化
+                    tab.classList.add('tab-active');
+                    tab.classList.remove('text-light');
+                    tab.setAttribute('aria-selected', 'true');
+
+                    // 対応するパネルを表示
+                    const targetPanel = document.getElementById(tab.getAttribute('aria-controls'));
+                    if (targetPanel) {
+                        targetPanel.classList.remove('hidden');
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
+
+
+
