@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <title>Geeno - 事業開発支援パートナー</title>
     
     <style>
@@ -91,6 +94,37 @@
             border-bottom-color: #64ffda;
             color: #64ffda;
         }
+
+        /* フロー図の矢印 (デザイン性向上) */
+        .flow-arrow {
+            position: relative;
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2.5rem; /* サイズアップ */
+            font-weight: 700; /* 太く */
+            color: #64ffda;
+            position: absolute;
+            top: 50%;
+            right: -3.5rem; /* 位置調整 */
+            transform: translateY(-50%);
+            display: none; /* モバイルでは非表示 */
+        }
+        
+        @media (min-width: 768px) {
+            .flow-arrow::after {
+                display: block;
+            }
+            .md\:flow-arrow-none::after {
+                display: none;
+            }
+        }
+        
+        /* AOS (Animate on Scroll) が読み込まれる前の非表示設定 */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
     </style>
 </head>
 <body class="bg-primary text-light">
@@ -111,6 +145,9 @@
             </a>
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="#strength" class="text-light hover:text-accent transition duration-300">Geenoの強み</a>
+                <!-- [MODIFIED] リンクとテキストを変更 -->
+                <a href="#standard-flow" class="text-light hover:text-accent transition duration-300">事業開発フロー</a>
+                <a href="#value-proposition" class="text-light hover:text-accent transition duration-300">提供価値</a>
                 <a href="#service" class="text-light hover:text-accent transition duration-300">サービス</a>
                 <a href="#case" class="text-light hover:text-accent transition duration-300">プロジェクト実績</a>
                 <a href="#contact" class="bg-accent text-primary px-4 py-2 text-sm font-bold hover:bg-opacity-80 transition duration-300">お問い合わせ</a>
@@ -125,6 +162,9 @@
         <!-- モバイルメニュー -->
         <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
             <a href="#strength" class="block text-light hover:text-accent transition duration-300">Geenoの強み</a>
+            <!-- [MODIFIED] リンクとテキストを変更 -->
+            <a href="#standard-flow" class="block text-light hover:text-accent transition duration-300">事業開発フロー</a>
+            <a href="#value-proposition" class="block text-light hover:text-accent transition duration-300">提供価値</a>
             <a href="#service" class="block text-light hover:text-accent transition duration-300">サービス</a>
             <a href="#case" class="block text-light hover:text-accent transition duration-300">プロジェクト実績</a>
             <a href="#contact" class="block bg-accent text-primary px-4 py-2 font-bold hover:bg-opacity-80 transition duration-300">お問い合わせ</a>
@@ -135,43 +175,32 @@
     <main>
 
         <!-- ファーストビュー (ヒーローセクション) -->
-        <section class="bg-primary py-24 md:py-40">
-            <!-- ... existing hero code ... -->
+        <section class="bg-primary py-24 md:py-40 overflow-hidden"> 
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-bright mb-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-bright mb-6" data-aos="fade-down">
                     企業の「次の一手」を、<br class="md:hidden">“現場から”実装する。
                 </h1>
-                <p class="text-lg md:text-xl text-light max-w-3xl mx-auto mb-10">
-                    本当に優秀なビジネスデベロップメントは、"現場"にいます。<br>
+                <p class="text-lg md:text-xl text-light max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="200">
+                    本当に優秀なビジネスデロップメントは、"現場"にいます。<br>
                     Geenoは、AI・DXの最先端スキルと経営の視座を武器に、貴社の事業を"現場から"成功に導くパートナーです。
                 </p>
-                <a href="#contact" class="bg-accent text-primary text-lg font-bold px-8 py-4 hover:bg-opacity-80 transition duration-300 shadow-lg shadow-accent/20">
-                    まずは無料でご相談ください
-                </a>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <a href="#contact" class="bg-accent text-primary text-lg font-bold px-8 py-4 hover:bg-opacity-80 transition duration-300 shadow-lg shadow-accent/20">
+                        まずは無料でご相談ください
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- 課題提起セクション (2x2 スクエア型・コンパクト化) -->
-        <section class="py-16 md:py-24 bg-primary">
+        <section class="py-16 md:py-24 bg-primary overflow-hidden">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16" data-aos="fade-up">
                     その課題、<br class="md:hidden">“現場で実行できる”<br class="md:hidden">パートナーが解決します
                 </h2>
-                <!-- 
-                  [修正点]
-                  - lg:grid-cols-4 を削除し、md:grid-cols-2 (2列) に統一
-                  - max-w-4xl と mx-auto を追加し、2x2グリッド全体の幅を制限してカードサイズを小さく
-                -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <!-- 
-                      [修正点]
-                      - p-6 を p-4 に（パディングを縮小）
-                      - w-10 h-10 を w-8 h-8 に（アイコンを縮小）
-                      - mb-4 を mb-3 に（マージンを縮小）
-                      - text-xl を text-lg に（タイトルを縮小）
-                    -->
                     <!-- 課題 1 (スクエア型・コンパクト化) -->
-                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center" data-aos="fade-up">
                         <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                         </svg>
@@ -181,7 +210,7 @@
                         </p>
                     </div>
                     <!-- 課題 2 (スクエア型・コンパクト化) -->
-                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center" data-aos="fade-up" data-aos-delay="100">
                         <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 21v-1.5M15.75 3v1.5M12 4.5v-1.5m0 18v-1.5M15.75 21v-1.5M19.5 8.25h1.5m-18 0h1.5M19.5 12h1.5m-18 0h1.5m15 3.75h1.5m-18 0h1.5M12 19.5v1.5m0-18v1.5" />
                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
@@ -193,7 +222,7 @@
                         </p>
                     </div>
                     <!-- 課題 3 (スクエア型・コンパクト化) -->
-                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center" data-aos="fade-up" data-aos-delay="200">
                         <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v16.5h16.5" />
                           <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 19.5v-15h9v15h-9zM15.75 9l-3 3m0 0l-3-3m3 3V3" />
@@ -204,7 +233,7 @@
                         </p>
                     </div>
                     <!-- 課題 4 (スクエア型・コンパクト化) -->
-                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center">
+                    <div class="bg-card p-4 shadow-xl card-hover border-t-2 border-accent aspect-square flex flex-col justify-center items-center text-center" data-aos="fade-up" data-aos-delay="300">
                         <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-4.3-2.722a3 3 0 01-4.682 2.72 9.094 9.094 0 013.741.479m-4.3-2.722a3 3 0 00-4.682-2.72 9.094 9.094 0 003.741.479m10.535 2.242a3 3 0 01-4.682 2.72 9.094 9.094 0 013.741.479m-4.3-2.722a3 3 0 00-4.682-2.72 9.094 9.094 0 003.741.479M12 12a3 3 0 11-6 0 3 3 0 016 0zM12 12a3 3 0 106 0 3 3 0 00-6 0z" />
                         </svg>
@@ -217,14 +246,14 @@
             </div>
         </section>
 
-        <!-- Geenoが選ばれる理由 (横スライドに変更) -->
-        <section id="strength" class="py-16 md:py-24 bg-card relative">
+        <!-- Geenoが選ばれる理由 (横スライド) -->
+        <section id="strength" class="py-16 md:py-24 bg-card relative overflow-hidden">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16" data-aos="fade-up">
                     Geenoが選ばれる理由
                 </h2>
                 <!-- Swiper -->
-                <div class="swiper-container swiper-strength w-full">
+                <div class="swiper-container swiper-strength w-full" data-aos="fade-up" data-aos-delay="200">
                     <div class="swiper-wrapper">
                         <!-- スライド 1 -->
                         <div class="swiper-slide p-4">
@@ -236,7 +265,7 @@
                                 </div>
                                 <h3 class="text-2xl font-bold text-bright mb-4">経営の視座と「現場」の実行力</h3>
                                 <p class="text-light">
-                                    「事業全体を動かす力」を、企画コンサルではなく"当事者"として提供。戦略策定から現場での実装まで、成果を出すまで伴走します。
+                                    取締役COOや事業責任者として培った「事業全体を動かす力」を、コンサルではなく"当事者"として提供。戦略策定から現場での実装まで、成果を出すまで伴走します。
                                 </p>
                             </div>
                         </div>
@@ -277,26 +306,209 @@
             </div>
         </section>
 
-        <!-- サービス内容 (成果の数字を追加) -->
-        <section id="service" class="py-16 md:py-24 bg-primary">
+        <!-- [NEW] 汎用的な事業開発フロー -->
+        <section id="standard-flow" class="py-16 md:py-24 bg-primary overflow-hidden">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
-                    サービス
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-6" data-aos="fade-up">
+                    事業開発の標準プロセス
+                </h2>
+                <p class="text-center text-lg text-light max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="100">
+                    アイデアの種を見つけてから事業を軌道に乗せるまでには、標準的なプロセスが存在します。<br class="hidden md:block">
+                    Geenoは、このプロセス全てを実行できるパートナーです。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-y-12 md:gap-x-14">
+                    <!-- ステップ 1 -->
+                    <div class="text-center flow-arrow" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-card p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 01</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">リサーチ・企画</h3>
+                            <p class="text-sm text-light">市場のニーズや競合を徹底的に調査し、「誰の」「どんな課題を」解決するのか、事業の核となるコンセプトを定義します。</p>
+                        </div>
+                    </div>
+                    <!-- ステップ 2 -->
+                    <div class="text-center flow-arrow" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-card p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.06-.749.117A2.25 2.25 0 007.126 4.7l-2.122 2.122M9.75 3.104c.251.023.501.06.749.117A2.25 2.25 0 0111.374 4.7l2.122 2.122m-3.746 0c.27.27.641.405 1.024.405h.008c.383 0 .754-.135 1.024-.405M7.126 6.822c.27.27.641.405 1.024.405h.008c.383 0 .754-.135 1.024-.405M4.5 18.75h15" />
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 02</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">MVP開発・検証</h3>
+                            <p class="text-sm text-light">最小限の機能を持つ製品（MVP）を迅速に開発。実際の顧客に提供し、フィードバックを得て仮説を検証します。</p>
+                        </div>
+                    </div>
+                    <!-- ステップ 3 -->
+                    <div class="text-center flow-arrow" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-card p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 03</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">実装・グロース</h3>
+                            <p class="text-sm text-light">検証結果を基にプロダクトを本格開発。マーケティングやセールスを実行し、高速で改善サイクル（PDCA）を回します。</p>
+                        </div>
+                    </div>
+                    <!-- ステップ 4 -->
+                    <div class="text-center md:flow-arrow-none" data-aos="fade-up" data-aos-delay="400">
+                        <div class="bg-card p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 04</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">スケール・自走化</h3>
+                            <p class="text-sm text-light">事業が軌道に乗った後、さらに成長を加速させるための仕組みを構築。最終的に組織が自走できる状態を目指します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [MODIFIED] Geenoの支援プロセス (フロー図・デザイン刷新) -->
+        <section id="flow" class="py-16 md:py-24 bg-card overflow-hidden">
+            <div class="container mx-auto px-6">
+                <!-- [MODIFIED] タイトルとリード文を変更 -->
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-6" data-aos="fade-up">
+                    Geenoの支援プロセス
+                </h2>
+                <p class="text-center text-lg text-light max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="100">
+                    Geenoは、標準プロセスに基づきつつ、貴社の状況に合わせた最短ルートを<br class="hidden md:block">
+                    "現場の当事者"として実行します。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-y-12 md:gap-x-14">
+                    <!-- ステップ 1 -->
+                    <div class="text-center flow-arrow" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M10 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zM13 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M10 13.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5z" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 01</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">ヒアリング・課題定義</h3>
+                            <p class="text-sm text-light">経営者・現場の課題を徹底的にヒアリングし、事業成功のKSF（重要成功要因）を定義します。</p>
+                        </div>
+                    </div>
+                    <!-- ステップ 2 -->
+                    <div class="text-center flow-arrow" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-primary p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V7.618a1 1 0 01.553-.894L9 4m0 16l6.447-2.724A1 1 0 0016 16.382V7.618a1 1 0 00-.553-.894L10 4m5 16l5.447-2.724A1 1 0 0021 16.382V7.618a1 1 0 00-.553-.894L15 4m0 16V4" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 02</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">戦略設計・計画立案</h3>
+                            <p class="text-sm text-light">課題に基づき、AI/DXを活用した最適な戦略と、実行可能な事業計画（ロードマップ）を策定します。</p>
+                        </div>
+                    </div>
+                    <!-- ステップ 3 -->
+                    <div class="text-center flow-arrow" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-primary p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M11.383 13.966c.338.2.622.46.84.78.217.32.36.685.42 1.075.06.39.044.8.004 1.204-.04.403-.156.79-.34 1.146a3.2 3.2 0 01-1.146 1.146c-.356.184-.743.3-1.146.34-.404.04-.814.056-1.204.004-.39-.06-.755-.203-1.075-.42-.32-.218-.58-.502-.78-.84a3.208 3.208 0 01-.78-.84c-.218-.32-.36-.685-.42-1.075-.06-.39-.044-.8-.004-1.204.04-.403.156-.79.34-1.146.184-.356.44-.666.753-.9a3.2 3.2 0 011.146-1.146c.356-.184.743-.3 1.146-.34.404-.04.814-.056 1.204-.004.39.06.755.203 1.075.42.32.218.58.502.78.84z" />
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M11.383 13.966l4.243 4.243m0 0l4.243-4.243-4.243-4.243-4.243 4.243zM15.626 18.209l4.243-4.243-4.243-4.243" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 03</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">実装・現場実行 (伴走)</h3>
+                            <p class="text-sm text-light">"現場"の当事者として実装。プロダクト開発、営業、マーケティングまでハンズオンで実行します。</p>
+                        </div>
+                    </div>
+                    <!-- ステップ 4 -->
+                    <div class="text-center md:flow-arrow-none" data-aos="fade-up" data-aos-delay="400">
+                        <div class="bg-primary p-8 border-t-2 border-accent shadow-xl h-full card-hover">
+                            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8M4 4h8m0 0v8m0-8L4 12" />
+                            </svg>
+                            <div class="text-accent font-bold text-xl mb-3">STEP 04</div>
+                            <h3 class="text-lg font-bold text-bright mb-2">改善・自走化支援</h3>
+                            <p class="text-sm text-light">成果を測定し、高速で改善サイクルを回します。最終的に貴社が自走できるための仕組みと組織を構築します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 体系的なサービス領域 -->
+        <section id="value-proposition" class="py-16 md:py-24 bg-primary overflow-hidden"> <!-- [MODIFIED] 背景色をbg-primaryに変更 -->
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-6" data-aos="fade-up">
+                    事業推進に必要なすべてを、ワンストップで
+                </h2>
+                <p class="text-center text-lg text-light max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="100">
+                    Geenoは、事業開発を「戦略」「技術」「組織」の3軸で捉え、<br class="hidden md:block">
+                    アイデアの創出からプロダクトの実装、市場への展開までをシームレスに支援します。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 領域 1: 戦略 (Strategy) -->
+                    <div class="bg-card p-8 card-hover border-t-2 border-accent" data-aos="fade-up" data-aos-delay="200">
+                        <svg class="w-12 h-12 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-bright mb-4">戦略<br>(Strategy)</h3>
+                        <p class="text-light mb-4">事業の「なぜ」と「どう勝つか」を定義。経営の視座で市場を分析し、実行可能な計画に落とし込みます。</p>
+                        <ul class="list-disc list-inside text-light space-y-2 text-sm">
+                            <li>新規事業の企画・立案 (0→1)</li>
+                            <li>市場・競合調査</li>
+                            <li>事業計画・ロードマップ策定</li>
+                            <li>マーケティング戦略</li>
+                            <li>セールス戦略・仕組み化</li>
+                        </ul>
+                    </div>
+                    <!-- 領域 2: 技術 (Technology) -->
+                    <div class="bg-card p-8 card-hover border-t-2 border-accent" data-aos="fade-up" data-aos-delay="300">
+                        <svg class="w-12 h-12 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-bright mb-4">技術<br>(Technology)</h3>
+                        <p class="text-light mb-4">戦略を「形」にする実装力。AIやDXツールを駆使し、顧客価値に直結するプロダクトを迅速に開発します。</p>
+                        <ul class="list-disc list-inside text-light space-y-2 text-sm">
+                            <li>DX基盤構築 (HubSpot等)</li>
+                            <li>UI/UXデザイン (Figma)</li>
+                            <li>Webサイト/LP制作ディレクション</li>
+                            <li>SaaSプロダクト企画</li>
+                            <li>プロンプトエンジニアリング</li>
+                        </ul>
+                    </div>
+                    <!-- 領域 3: 組織 (Organization) -->
+                    <div class="bg-card p-8 card-hover border-t-2 border-accent" data-aos="fade-up" data-aos-delay="400">
+                        <svg class="w-12 h-12 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-2.37M16 11V7a4 4 0 00-8 0v4M5 9H3a2 2 0 00-2 2v4a2 2 0 002 2h2m0-6V7a4 4 0 018 0v4m-8 0h8" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-bright mb-4">組織<br>(Organization)</h3>
+                        <p class="text-light mb-4">戦略を「継続」させる実行力。チームを組成し、外部リソースを統率。事業が自走できる仕組みを作ります。</p>
+                        <ul class="list-disc list-inside text-light space-y-2 text-sm">
+                            <li>組織開発・チームビルディング</li>
+                            <li>外部組織の統率・マネジメント</li>
+                            <li>セールスチーム育成</li>
+                            <li>採用・オンボーディング支援</li>
+                            <li>経営者の壁打ち・意思決定支援</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- サービス内容 (成果の数字) -->
+        <section id="service" class="py-16 md:py-24 bg-card overflow-hidden">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16" data-aos="fade-up">
+                    主な支援領域と成果
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- サービス 1 -->
-                    <div class="bg-card shadow-xl overflow-hidden card-hover flex flex-col">
+                    <div class="bg-primary shadow-xl overflow-hidden card-hover flex flex-col" data-aos="fade-up" data-aos-delay="100">
                         <div class="p-8 flex-grow">
                             <h3 class="text-2xl font-bold text-accent mb-4">新規事業開発 (0→1)</h3>
                             <ul class="list-disc list-inside text-light space-y-2">
                                 <li>市場調査・事業企画・コンセプト設計</li>
                                 <li>AI / SaaS プロダクト開発支援</li>
-                                <li>UI/UXデザイン</li>
+                                <li>UI/UXデザイン (Figma)</li>
                                 <li>AIコアロジック開発 (プロンプト)</li>
                                 <li>MVP（実用最小限の製品）構築</li>
                             </ul>
                         </div>
-                        <div class="p-8 bg-primary mt-auto">
+                        <div class="p-8 bg-card mt-auto">
                             <h4 class="text-lg font-bold text-bright mb-2">主な成果指標</h4>
                             <p class="text-accent font-bold text-2xl">2年で売上30倍</p>
                             <p class="text-light text-sm">（防災SaaS事業 COOとして）</p>
@@ -305,7 +517,7 @@
                         </div>
                     </div>
                     <!-- サービス 2 -->
-                    <div class="bg-card shadow-xl overflow-hidden card-hover flex flex-col">
+                    <div class="bg-primary shadow-xl overflow-hidden card-hover flex flex-col" data-aos="fade-up" data-aos-delay="200">
                         <div class="p-8 flex-grow">
                             <h3 class="text-2xl font-bold text-accent mb-4">既存事業グロース (1→10)</h3>
                             <ul class="list-disc list-inside text-light space-y-2">
@@ -316,7 +528,7 @@
                                 <li>HubSpot導入・運用支援</li>
                             </ul>
                         </div>
-                        <div class="p-8 bg-primary mt-auto">
+                        <div class="p-8 bg-card mt-auto">
                             <h4 class="text-lg font-bold text-bright mb-2">主な成果指標</h4>
                             <p class="text-accent font-bold text-2xl">1年で売上2億円達成</p>
                             <p class="text-light text-sm">（コンサル事業 DX・組織支援）</p>
@@ -325,7 +537,7 @@
                         </div>
                     </div>
                     <!-- サービス 3 -->
-                    <div class="bg-card shadow-xl overflow-hidden card-hover flex flex-col">
+                    <div class="bg-primary shadow-xl overflow-hidden card-hover flex flex-col" data-aos="fade-up" data-aos-delay="300">
                         <div class="p-8 flex-grow">
                             <h3 class="text-2xl font-bold text-accent mb-4">組織開発・マネジメント</h3>
                             <ul class="list-disc list-inside text-light space-y-2">
@@ -336,7 +548,7 @@
                                 <li>採用・オンボーディング支援</li>
                             </ul>
                         </div>
-                        <div class="p-8 bg-primary mt-auto">
+                        <div class="p-8 bg-card mt-auto">
                             <h4 class="text-lg font-bold text-bright mb-2">主な成果指標</h4>
                             <p class="text-accent font-bold text-2xl">8ヶ月で8名→60名</p>
                             <p class="text-light text-sm">（CS組織 拠点長として）</p>
@@ -348,15 +560,15 @@
             </div>
         </section>
         
-        <!-- プロジェクト実績 (クリック式タブに変更) -->
-        <section id="case" class="py-16 md:py-24 bg-card">
+        <!-- プロジェクト実績 (クリック式タブ) -->
+        <section id="case" class="py-16 md:py-24 bg-primary overflow-hidden"> <!-- [MODIFIED] 背景色をbg-primaryに変更 -->
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-16" data-aos="fade-up">
                     プロジェクト実績 (ケーススタディ)
                 </h2>
                 
                 <!-- タブヘッダー -->
-                <div class="flex justify-center border-b border-slate-700 mb-8" role="tablist" aria-label="実績カテゴリ">
+                <div class="flex justify-center border-b border-slate-700 mb-8" role="tablist" aria-label="実績カテゴリ" data-aos="fade-up" data-aos-delay="100">
                     <button role="tab" aria-selected="true" id="tab-it" aria-controls="panel-it" class="tab-button tab-active text-lg font-bold py-3 px-6 border-b-2 border-transparent hover:text-accent transition-colors">IT / AI</button>
                     <button role="tab" aria-selected="false" id="tab-consulting" aria-controls="panel-consulting" class="tab-button text-lg font-bold py-3 px-6 border-b-2 border-transparent text-light hover:text-accent transition-colors">コンサルティング</button>
                     <button role="tab" aria-selected="false" id="tab-dx" aria-controls="panel-dx" class="tab-button text-lg font-bold py-3 px-6 border-b-2 border-transparent text-light hover:text-accent transition-colors">製造業 / DX</button>
@@ -364,12 +576,12 @@
                 </div>
 
                 <!-- タブパネル -->
-                <div class="space-y-8">
+                <div class="space-y-8" data-aos="fade-up" data-aos-delay="200">
                     <!-- 実績 1 (IT / AI) -->
                     <div role="tabpanel" id="panel-it" aria-labelledby="tab-it" class="tab-panel space-y-8">
-                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                        <div class="bg-card p-8 shadow-xl border-l-4 border-accent"> <!-- [MODIFIED] 背景色をbg-cardに変更 -->
                             <h3 class="text-2xl font-bold text-bright mb-2">広告領域 AI SaaS</h3>
-                            <p class="text-sm text-gray-400 mb-4">業界: IT / AI</d>
+                            <p class="text-sm text-gray-400 mb-4">業界: IT / AI</p>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div>
                                     <h4 class="font-bold text-slate-300">課題</h4>
@@ -392,7 +604,7 @@
 
                     <!-- 実績 2 (コンサルティング) -->
                     <div role="tabpanel" id="panel-consulting" aria-labelledby="tab-consulting" class="tab-panel hidden space-y-8">
-                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                        <div class="bg-card p-8 shadow-xl border-l-4 border-accent"> <!-- [MODIFIED] 背景色をbg-cardに変更 -->
                             <h3 class="text-2xl font-bold text-bright mb-2">DX・組織コンサルティング</h3>
                             <p class="text-sm text-gray-400 mb-4">業界: コンサルティング / 労務</p>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -417,7 +629,7 @@
 
                     <!-- 実績 3 (製造業 / DX) -->
                     <div role="tabpanel" id="panel-dx" aria-labelledby="tab-dx" class="tab-panel hidden space-y-8">
-                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                        <div class="bg-card p-8 shadow-xl border-l-4 border-accent"> <!-- [MODIFIED] 背景色をbg-cardに変更 -->
                             <h3 class="text-2xl font-bold text-bright mb-2">事業再生 (製造業 DX)</h3>
                             <p class="text-sm text-gray-400 mb-4">業界: 製造業 / DX</p>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -442,7 +654,7 @@
 
                     <!-- 実績 4 (不動産 / SaaS) -->
                     <div role="tabpanel" id="panel-saas" aria-labelledby="tab-saas" class="tab-panel hidden space-y-8">
-                        <div class="bg-primary p-8 shadow-xl border-l-4 border-accent">
+                        <div class="bg-card p-8 shadow-xl border-l-4 border-accent"> <!-- [MODIFIED] 背景色をbg-cardに変更 -->
                             <h3 class="text-2xl font-bold text-bright mb-2">事業グロース (防災 SaaS)</h3>
                             <p class="text-sm text-gray-400 mb-4">業界: 不動産 / SaaS</p>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -469,13 +681,12 @@
         </section>
 
         <!-- お問い合わせ (Contact) -->
-        <section id="contact" class="py-16 md:py-24 bg-primary">
-            <!-- ... existing contact form code ... -->
+        <section id="contact" class="py-16 md:py-24 bg-primary overflow-hidden">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-bright mb-12" data-aos="fade-up">
                     お問い合わせ
                 </h2>
-                <div class="max-w-3xl mx-auto bg-card p-8 md:p-12 shadow-xl">
+                <div class="max-w-3xl mx-auto bg-card p-8 md:p-12 shadow-xl" data-aos="fade-up" data-aos-delay="100">
                     <p class="text-center text-light mb-8">
                         事業の課題、新規プロジェクト、AIの活用など、まずはお気軽にご相談ください。<br>
                         経営者の壁打ち相手として、共に解決策を探します。
@@ -493,10 +704,25 @@
                             <label for="email" class="block text-slate-300 font-bold mb-2">メールアドレス <span class="text-accent">*</span></label>
                             <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-primary border border-slate-600 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" placeholder="example@company.com">
                         </div>
+                        
+                        <!-- お問い合わせ内容 プルダウン -->
+                        <div class="mb-6">
+                            <label for="inquiry-type" class="block text-slate-300 font-bold mb-2">お問い合わせ内容 <span class="text-accent">*</span></label>
+                            <select id="inquiry-type" name="inquiry-type" required class="w-full px-4 py-3 bg-primary border border-slate-600 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent appearance-none pr-8" style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 fill%3D%22none%22 viewBox%3D%220 0 20 20%22%3E%3Cpath stroke%3D%22%2364ffda%22 stroke-linecap%3D%22round%22 stroke-linejoin%3D%22round%22 stroke-width%3D%221.5%22 d%3D%22M6 8l4 4 4-4%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25em 1.25em;">
+                                <option value="" disabled selected>選択してください</option>
+                                <option value="新規事業開発について">新規事業開発 (0→1) について</option>
+                                <option value="既存事業グロースについて">既存事業グロース (1→10) について</option>
+                                <option value="組織開発・マネジメントについて">組織開発・マネジメントについて</option>
+                                <option value="その他のお問い合わせ">その他のお問い合わせ</option>
+                            </select>
+                        </div>
+
+                        <!-- ご相談内容 -->
                         <div class="mb-8">
                             <label for="message" class="block text-slate-300 font-bold mb-2">ご相談内容 <span class="text-accent">*</span></label>
                             <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 bg-primary border border-slate-600 text-slate-100 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" placeholder="（例）新規SaaS事業の立ち上げについて相談したい。"></textarea>
                         </div>
+                        
                         <div class="text-center">
                             <button type="submit" class="bg-accent text-primary px-8 py-4 text-lg font-bold hover:bg-opacity-80 transition duration-300 shadow-lg shadow-accent/20">
                                 送信する
@@ -525,6 +751,9 @@
             </div>
             <nav class="flex justify-center flex-wrap space-x-6 mb-6">
                 <a href="#strength" class="hover:text-accent transition duration-300">Geenoの強み</a>
+                <!-- [MODIFIED] リンクを追加 -->
+                <a href="#standard-flow" class="hover:text-accent transition duration-300">事業開発フロー</a>
+                <a href="#value-proposition" class="hover:text-accent transition duration-300">提供価値</a>
                 <a href="#service" class="hover:text-accent transition duration-300">サービス</a>
                 <a href="#case" class="hover:text-accent transition duration-300">プロジェクト実績</a>
                 <a href="#contact" class="hover:text-accent transition duration-300">お問い合わせ</a>
@@ -533,9 +762,19 @@
         </div>
     </footer>
 
+    <!-- AOS (Animate On Scroll) JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // AOSの初期化
+            AOS.init({
+                duration: 800, // アニメーションの期間
+                once: true,    // アニメーションを1回だけ実行
+                offset: 100,   // 画面下から100pxの位置で開始
+            });
+
             // モバイルメニューのトグル
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -548,6 +787,50 @@
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // ヘッダーのナビゲーションリンクにも同様の処理を追加
+            document.querySelectorAll('#header nav a, footer nav a, #mobile-menu a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    
+                    // 外部リンクやアンカーリンクでない場合はデフォルトの動作
+                    if (!href || href[0] !== '#') return;
+
+                    // お問い合わせボタンはフォームへ移動
+                    if(href === '#contact') {
+                        // スムーススクロールの実行
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            e.preventDefault();
+                            const headerOffset = document.getElementById('header').offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                            window.scrollTo({
+                                 top: offsetPosition,
+                                 behavior: "smooth"
+                            });
+                        }
+                        return; // submit処理はさせない
+                    }
+                    
+                    // スムーススクロールの実行
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        e.preventDefault();
+                        // ヘッダーの高さを考慮してスクロール
+                        const headerOffset = document.getElementById('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                             top: offsetPosition,
+                             behavior: "smooth"
+                        });
+                    }
                 });
             });
 
@@ -626,6 +909,4 @@
 
 </body>
 </html>
-
-
 
